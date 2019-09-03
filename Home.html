@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <form id="sendData" action="POST">
+
+        <label for="operation">Operation</label>
+        <select name="operation" id="operation" required>
+            <option value="sum">Sum</option>
+            <option value="substraction">Susbtract</option>
+            <option value="division">Divide</option>
+            <option value="multiplication">Multiply</option>
+        </select>
+
+        <label for="value1">Value 1</label>
+        <input type="number" name="value1" id="value1" required>
+
+        <label for="value2">Value 2</label>
+        <input type="number" name="value2" id="value2" required>
+
+        <input type="submit" value="Do math!">
+    </form>
+    <div id="log"></div>
+
+    <script>
+        $('#sendData').submit(function(e) {
+            e.preventDefault();
+            var oper = $("#operation").val();
+            var val1 = $("#value1").val();
+            var val2 = $("#value2").val();
+            var request = $.ajax({
+                url: "RestController.php",
+                method: "POST",
+                data: {values: [val1, val2], operation: oper},
+                dataType: "json"
+            });
+
+            request.done(function (obj) {
+                $("#log").html('Satus: ' + obj.status +'. Result: '+ obj.result + '.');
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                alert("Request failed: " + textStatus);
+            });
+        });
+    </script>
+</body>
+</html>
