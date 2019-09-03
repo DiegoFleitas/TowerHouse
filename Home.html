@@ -8,27 +8,50 @@
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
             crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+
     <form id="sendData" action="POST">
 
-        <label for="operation">Operation</label>
-        <select name="operation" id="operation" required>
-            <option value="sum">Sum</option>
-            <option value="substraction">Susbtract</option>
-            <option value="division">Divide</option>
-            <option value="multiplication">Multiply</option>
-        </select>
+        <div class="form-inline pt-2 mt-2">
 
-        <label for="value1">Value 1</label>
-        <input type="number" name="value1" id="value1" required>
+            <div class="form-group col-md-6">
+                <label class="my-1 mr-2" for="value1">Value 1:</label>
+                <input class="form-control" type="number" name="value1" id="value1" required>
+            </div>
 
-        <label for="value2">Value 2</label>
-        <input type="number" name="value2" id="value2" required>
+            <div class="form-group col-md-6">
+                <label class="my-1 mr-2" for="value2">Value 2:</label>
+                <input class="form-control" type="number" name="value2" id="value2" required>
+            </div>
+        </div>
 
-        <input type="submit" value="Do math!">
+        <div>
+
+        <label class="col-form-label pl-2 ml-2" for="operation">Operation</label>
+        </div>
+        <div class="form-inline">
+            <div class="form-group col-md-6">
+                <select class="form-control" name="operation" id="operation" required>
+                    <option value="sum">Sum</option>
+                    <option value="substraction">Susbtract</option>
+                    <option value="division">Divide</option>
+                    <option value="multiplication">Multiply</option>
+                </select>
+
+            </div>
+
+            <div class="form-group col-md-6">
+                <input class="btn btn-primary" type="submit" value="Calculate">
+            </div>
+        </div>
+
+
     </form>
-    <div id="log"></div>
+
+    <div id="log" class="col-md-12"></div>
+
 
     <script>
         $('#sendData').submit(function(e) {
